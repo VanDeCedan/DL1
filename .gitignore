@@ -1,0 +1,14 @@
+models/
+*.h5
+*.hdf5
+
+myenv/
+# Cache and temp files
+__pycache__/
+*.pyc
+temp_model.h5
+
+# Environment variables
+.env
+.env.local
+.env.production
