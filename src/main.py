@@ -3,9 +3,6 @@ import tensorflow as tf
 import numpy as np
 import os
 import requests
-from dotenv import load_dotenv
-
-load_dotenv()
 
 parazitized_class_names = ['cellules saines', 'cellules infectées']
 
@@ -145,23 +142,3 @@ def load_model_with_cache(cloud_url, local_model_path='models/model2.h5'):
         return load_model(local_model_path)
     else:
         raise Exception("Failed to load model from cloud storage and no local cache available")
-
-# Replace with your cloud storage share link (OneDrive, Google Drive, or Dropbox)
-PARAZITIZED_MODEL_URL = os.getenv('PARAZITIZED_MODEL_URL')
-
-# Load the model (will download if not cached locally)
-model_parasit = load_model_with_cache(PARAZITIZED_MODEL_URL)
-
-def preprocess_image(image):
-    if image.mode != 'RGB':
-        image = image.convert('RGB')
-    image = image.resize((50, 50))  # Resize to match model input size
-    image = np.array(image) / 255.0  # Normalize the image
-    image = np.expand_dims(image, axis=0)  # Add batch dimension
-    return image
-
-def predict(image):
-    image = preprocess_image(image)
-    predictions = model_parasit.predict(image)
-    predicted_class = np.argmax(predictions, axis=1)[0]
-    return parazitized_class_names[predicted_class], predictions[0][predicted_class]

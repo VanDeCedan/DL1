@@ -3,6 +3,7 @@ models/
 *.hdf5
 
 myenv/
+.streamlit/
 # Cache and temp files
 __pycache__/
 *.pyc
@@ -12,3 +13,4 @@ temp_model.h5
 .env
 .env.local
 .env.production
+.toml

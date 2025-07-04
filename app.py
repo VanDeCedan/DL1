@@ -5,8 +5,34 @@ import sys
 import os
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, parent_dir)
-from src.main import predict
+from src.main import parazitized_class_names,load_model_with_cache
+import numpy as np
+from dotenv import load_dotenv
 
+load_dotenv()
+
+# Replace with your cloud storage share link (OneDrive, Google Drive, or Dropbox)
+try:
+    PARAZITIZED_MODEL_URL = st.secrets['PARAZITIZED_MODEL_URL']
+except:
+    PARAZITIZED_MODEL_URL = os.getenv('PARAZITIZED_MODEL_URL')
+
+# Load the model (will download if not cached locally)
+model_parasit = load_model_with_cache(PARAZITIZED_MODEL_URL)
+
+def preprocess_image(image):
+    if image.mode != 'RGB':
+        image = image.convert('RGB')
+    image = image.resize((50, 50))  # Resize to match model input size
+    image = np.array(image) / 255.0  # Normalize the image
+    image = np.expand_dims(image, axis=0)  # Add batch dimension
+    return image
+
+def predict(image):
+    image = preprocess_image(image)
+    predictions = model_parasit.predict(image)
+    predicted_class = np.argmax(predictions, axis=1)[0]
+    return parazitized_class_names[predicted_class], predictions[0][predicted_class]
 
 st.title("Classification d'images")
 
