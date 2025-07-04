@@ -13,9 +13,9 @@ load_dotenv()
 
 # Replace with your cloud storage share link (OneDrive, Google Drive, or Dropbox)
 try:
-    PARAZITIZED_MODEL_URL = st.secrets['PARAZITIZED_MODEL_URL']
+    PARAZITIZED_MODEL_URL = st.secrets['parazited_model_url ']
 except:
-    PARAZITIZED_MODEL_URL = os.getenv('PARAZITIZED_MODEL_URL')
+    PARAZITIZED_MODEL_URL = os.getenv('parazited_model_url')
 
 # Load the model (will download if not cached locally)
 model_parasit = load_model_with_cache(PARAZITIZED_MODEL_URL)
