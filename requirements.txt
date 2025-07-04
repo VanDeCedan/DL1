@@ -1,7 +1,6 @@
-streamlit
-streamlit-option-menu
-tensorflow
-pillow
-numpy
-pandas
-python-dotenv
+streamlit==1.46.1
+streamlit-option-menu==0.4.0
+tensorflow==2.10.0
+numpy==2.1.3
+pandas==2.3.0
+python-dotenv==1.1.1
