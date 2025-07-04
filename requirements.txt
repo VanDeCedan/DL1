@@ -4,5 +4,5 @@ Pillow
 opencv-python-headless
 streamlit
 streamlit-option-menu
-tensorflow
+tensorflow>=2.19.0
 split-folders
