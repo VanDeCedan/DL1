@@ -4,8 +4,6 @@ import numpy as np
 import os
 import requests
 
-parazitized_class_names = ['cellules saines', 'cellules infectées']
-
 def download_model_from_cloud(share_url, local_path):
     """Download model from OneDrive or Google Drive share link"""
     try:
